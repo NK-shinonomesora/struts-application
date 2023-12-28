@@ -1,0 +1,11 @@
+<Context reloadable="false">
+  <Resource
+    name="jdbc/struts"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="com.mysql.cj.jdbc.Driver"
+    url="jdbc:mysql://tomcat-database-1:3306/struts"
+    username="root"
+    password="1234qwer"
+  />
+</Context>
