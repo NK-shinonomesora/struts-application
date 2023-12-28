@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  servlet:
+    image: tomcat:9.0
+    networks:
+      - mydockernet
+    restart: always
+    environment:
+      - CLASSPATH=/usr/local/tomcat/lib/servlet-api.jar
+      - CATALINA_OPTS=-Dfile.encoding=UTF-8
+      #- MAVEN_HOME="${PWD}/apache-maven-3.9.6"
+    ports:
+      - 8888:8080
+    volumes:
+      - "${PWD}/webapps:/usr/local/tomcat/webapps"
+      #- "${PWD}/apache-maven-3.9.6:/mnt"
+
+  database:
+    image: mysql:8.2.0
+    # command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - mydockernet
+    volumes:
+      - mydockervolume:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234qwer
+
+networks:
+  mydockernet:
+
+volumes:
+  mydockervolume:
