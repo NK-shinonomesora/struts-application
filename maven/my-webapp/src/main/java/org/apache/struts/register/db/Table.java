@@ -6,4 +6,5 @@ import java.util.ArrayList;
 public interface Table {
   public void insert(Bean bean);
   public ArrayList<Bean> select();
+  public Bean selectById(int id);
 }

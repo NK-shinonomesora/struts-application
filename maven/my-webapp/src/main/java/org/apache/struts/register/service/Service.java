@@ -12,4 +12,8 @@ public class Service {
   public ArrayList<Bean> select(Table table) {
     return table.select();
   }
+
+  public Bean selectById(Table table, int id) {
+    return table.selectById(id);
+  }
 }

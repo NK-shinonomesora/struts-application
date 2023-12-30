@@ -29,6 +29,7 @@ public class TodoTable extends TableImpl {
     try {
       Connection con = getConnection();
       ArrayList<Bean> todos = new ArrayList<>();
+
       PreparedStatement st = con.prepareStatement("select * from todo");
       ResultSet rs = st.executeQuery();
   
@@ -43,6 +44,30 @@ public class TodoTable extends TableImpl {
       st.close();
       con.close();
       return todos;
+    } catch(Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public Bean selectById(int id) {
+    try {
+      Connection con = getConnection();
+      Todo todo = new Todo();
+
+      PreparedStatement st = con.prepareStatement("select * from todo where todo_id = ?");
+      st.setInt(1, id);
+      ResultSet rs = st.executeQuery();
+
+      while(rs.next()) {
+        todo.setId(id);
+        todo.setTitle(rs.getString("title"));
+        todo.setContent(rs.getString("content"));
+        todo.setDeadline(rs.getString("deadline"));
+      }
+      st.close();
+      con.close();
+      return todo;
     } catch(Exception e) {
       e.printStackTrace();
       return null;
