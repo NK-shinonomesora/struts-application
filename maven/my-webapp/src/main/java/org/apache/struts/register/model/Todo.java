@@ -1,6 +1,8 @@
 package org.apache.struts.register.model;
 
-public class Todo {
+import java.util.ArrayList;
+
+public class Todo implements Bean {
   private String title;
   private String content;
   private String deadline;
@@ -31,5 +33,13 @@ public class Todo {
 
   public String toString() {
     return "Title is " + getTitle() + " Content is " + getContent() + " Deadline is " + getDeadline();
+  }
+
+  public ArrayList<String> getData() {
+    ArrayList<String> list = new ArrayList<>();
+    list.add(getTitle());
+    list.add(getContent());
+    list.add(getDeadline());
+    return list;
   }
 }
