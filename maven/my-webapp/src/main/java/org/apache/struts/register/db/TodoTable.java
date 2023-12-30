@@ -24,4 +24,28 @@ public class TodoTable extends TableImpl {
 
     }
   }
+
+  public ArrayList<Bean> select() {
+    try {
+      Connection con = getConnection();
+      ArrayList<Bean> todos = new ArrayList<>();
+      PreparedStatement st = con.prepareStatement("select * from todo");
+      ResultSet rs = st.executeQuery();
+  
+      while(rs.next()) {
+        Todo todo = new Todo();
+        todo.setId(rs.getInt("todo_id"));
+        todo.setTitle(rs.getString("title"));
+        todo.setContent(rs.getString("content"));
+        todo.setDeadline(rs.getString("deadline"));
+        todos.add(todo);
+      }
+      st.close();
+      con.close();
+      return todos;
+    } catch(Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 }

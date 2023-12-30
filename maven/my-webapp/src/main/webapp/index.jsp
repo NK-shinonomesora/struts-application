@@ -9,5 +9,6 @@
     <body>
         <h1>Welcome To Struts 2!</h1>
         <p><a href="register.jsp">Please register</a> for our prize drawing.</p>
+        <p><a href="<s:url action='select'/>">Confirm all todos.</a></p>
     </body>
 </html>

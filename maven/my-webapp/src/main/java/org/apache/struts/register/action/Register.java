@@ -10,7 +10,6 @@ public class Register extends ActionSupport {
   private Todo todoBean;
 
   public String execute() throws Exception {
-    // ここにTodoをDBに登録するなどの処理を実装
     Service service = new Service();
     service.insert(new TodoTable(), todoBean);
 
