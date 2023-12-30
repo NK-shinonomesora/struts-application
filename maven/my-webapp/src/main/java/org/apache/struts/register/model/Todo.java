@@ -3,9 +3,18 @@ package org.apache.struts.register.model;
 import java.util.ArrayList;
 
 public class Todo implements Bean {
+  private int id;
   private String title;
   private String content;
   private String deadline;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 
   public String getTitle() {
     return title;
