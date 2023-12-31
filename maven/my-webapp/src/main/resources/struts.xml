@@ -20,6 +20,10 @@
         <action name="selectById" class="org.apache.struts.register.action.SelectById" method="execute">
           <result name="success">/todo.jsp</result>
         </action>
+        <action name="update" class="org.apache.struts.register.action.Update" method="execute">
+          <result name="success">/thankyou.jsp</result>
+          <result name="input">/todo.jsp</result>
+        </action>
     </package>
 
 </struts>

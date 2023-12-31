@@ -7,4 +7,5 @@ public interface Table {
   public void insert(Bean bean);
   public ArrayList<Bean> select();
   public Bean selectById(int id);
+  public void update(Bean bean, int id);
 }

@@ -17,7 +17,6 @@ public class TodoTable extends TableImpl {
 
       int line = st.executeUpdate();
 
-      con.commit();
       st.close();
       con.close();
     } catch(Exception e) {
@@ -71,6 +70,27 @@ public class TodoTable extends TableImpl {
     } catch(Exception e) {
       e.printStackTrace();
       return null;
+    }
+  }
+
+  public void update(Bean bean, int id) {
+    try {
+      Connection con = getConnection();
+      PreparedStatement st = con.prepareStatement("update todo set title = ?, content = ?, deadline = ? where todo_id = ?");
+
+      ArrayList<String> data = bean.getData();
+      for(int i = 0; i < data.size();  i++) {
+        st.setString(i + 1, data.get(i));
+      }
+      st.setInt(4, id);
+
+      int line = st.executeUpdate();
+
+      st.close();
+      con.close();
+
+    } catch(Exception e) {
+      e.printStackTrace();
     }
   }
 }
