@@ -10,17 +10,17 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>
-        <action name="register" class="org.apache.struts.register.action.Register" method="execute">
+        <action name="register" class="org.apache.struts.register.action.TodoAction" method="insert">
           <result name="success">/thankyou.jsp</result>
           <result name="input">/register.jsp</result>
         </action>
-        <action name="select" class="org.apache.struts.register.action.Select" method="execute">
+        <action name="select" class="org.apache.struts.register.action.TodoAction" method="select">
           <result name="success">/todos.jsp</result>
         </action>
-        <action name="selectById" class="org.apache.struts.register.action.SelectById" method="execute">
+        <action name="selectById" class="org.apache.struts.register.action.TodoAction" method="selectById">
           <result name="success">/todo.jsp</result>
         </action>
-        <action name="update" class="org.apache.struts.register.action.Update" method="execute">
+        <action name="update" class="org.apache.struts.register.action.TodoAction" method="update">
           <result name="success">/thankyou.jsp</result>
           <result name="input">/todo.jsp</result>
         </action>
