@@ -5,6 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Description a todo</title>
+    <s:head />
   </head>
   <body>
     <h3>Description a todo.</h3>
