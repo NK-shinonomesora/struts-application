@@ -16,4 +16,8 @@ public class Service {
   public Bean selectById(Table table, int id) {
     return table.selectById(id);
   }
+
+  public void update(Table table, Bean bean, int id) {
+    table.update(bean, id);
+  }
 }

@@ -9,7 +9,13 @@
   <body>
     <h3>Description a todo.</h3>
 
-    <p><s:property value="todoBean"/></p>
+    <s:form action="update">
+      <s:textfield name="todoBean.id" style="display: none;"/>
+      <s:textfield name="todoBean.title" label="Title"/>
+      <s:textarea name="todoBean.content" label="Content" />
+      <s:textfield name="todoBean.deadline" label="Deadline" type="date" format="dd-MM-yyyy" />
+      <s:submit value="Update"/>
+    </s:form>	
 
     <p><a href="<s:url action='index'/>" >Return to home page</a>.</p>
   </body>

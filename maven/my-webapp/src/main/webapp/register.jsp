@@ -12,8 +12,8 @@
 
     <s:form action="register">
       <s:textfield name="todoBean.title" label="Title" />
-      <s:textfield name="todoBean.content" label="Content" />
-      <s:textfield name="todoBean.deadline"  label ="Deadline" />
+      <s:textarea name="todoBean.content" label="Content" />
+      <s:textfield name="todoBean.deadline" label="Deadline" type="date" format="dd-MM-yyyy" />
       <s:submit/>
     </s:form>	
   </body>
