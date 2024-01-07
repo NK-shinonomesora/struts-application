@@ -8,4 +8,5 @@ public interface Table {
   public ArrayList<Bean> select();
   public Bean selectById(int id);
   public void update(Bean bean, int id);
+  public void delete(int id);
 }

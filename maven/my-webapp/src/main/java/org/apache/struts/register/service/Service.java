@@ -20,4 +20,8 @@ public class Service {
   public void update(Table table, Bean bean, int id) {
     table.update(bean, id);
   }
+
+  public void delete(Table table, int id) {
+    table.delete(id);
+  }
 }

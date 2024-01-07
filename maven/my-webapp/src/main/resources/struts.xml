@@ -24,6 +24,9 @@
           <result name="success">/thankyou.jsp</result>
           <result name="input">/todo.jsp</result>
         </action>
+        <action name="delete" class="org.apache.struts.register.action.TodoAction" method="delete">
+          <result name="success">/thankyou2.jsp</result>
+        </action>
     </package>
 
 </struts>

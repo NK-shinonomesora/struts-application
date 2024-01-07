@@ -93,4 +93,19 @@ public class TodoTable extends TableImpl {
       e.printStackTrace();
     }
   }
+
+  public void delete(int id) {
+    try {
+      Connection con = getConnection();
+      PreparedStatement st = con.prepareStatement("delete from todo where todo_id = ?");
+
+      st.setInt(1, id);
+      int line = st.executeUpdate();
+
+      st.close();
+      con.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 }

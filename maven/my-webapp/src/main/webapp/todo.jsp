@@ -16,7 +16,12 @@
       <s:textarea name="todoBean.content" label="Content" />
       <s:textfield name="todoBean.deadline" label="Deadline" type="date" format="dd-MM-yyyy" />
       <s:submit value="Update"/>
-    </s:form>	
+    </s:form>
+
+    <s:url action="delete" var="deleteLink">
+      <s:param name="id"><s:property value="todoBean.id"/></s:param>
+    </s:url>
+    <button><a href="${deleteLink}">Delete</a></button>
 
     <p><a href="<s:url action='index'/>" >Return to home page</a>.</p>
   </body>
