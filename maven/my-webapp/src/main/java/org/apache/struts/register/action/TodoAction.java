@@ -67,6 +67,13 @@ public class TodoAction extends ActionSupport {
     return SUCCESS;
   }
 
+  public String delete() throws Exception {
+    Service service = new Service();
+    service.delete(new TodoTable(), id);
+
+    return SUCCESS;
+  }
+
   public void validate() {
     if(todoBean != null) {
       if(todoBean.getTitle().length() == 0) addFieldError("todoBean.title", "Title is required.");
