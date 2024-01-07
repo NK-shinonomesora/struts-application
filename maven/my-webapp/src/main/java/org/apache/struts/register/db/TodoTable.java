@@ -5,31 +5,27 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class TodoTable extends TableImpl {
-  public void insert(Bean bean) {
-    try {
-      Connection con = getConnection();
-      PreparedStatement st = con.prepareStatement("insert into todo (title, content, deadline) values(?, ?, ?)");
-      
+  public void insert(Bean bean) throws Exception {
+    try(Connection con = getConnection();
+      PreparedStatement st = con.prepareStatement("insert into todo (title, content, deadline) values(?, ?, ?)");) {
+
       ArrayList<String> data = bean.getData();
       for(int i = 0; i < data.size();  i++) {
         st.setString(i + 1, data.get(i));
       }
 
       int line = st.executeUpdate();
-
-      st.close();
-      con.close();
     } catch(Exception e) {
-
+      e.printStackTrace();
+      throw e;
     }
   }
 
-  public ArrayList<Bean> select() {
-    try {
-      Connection con = getConnection();
+  public ArrayList<Bean> select() throws Exception {
+    try(Connection con = getConnection();
+      PreparedStatement st = con.prepareStatement("select * from todo");) {
+      
       ArrayList<Bean> todos = new ArrayList<>();
-
-      PreparedStatement st = con.prepareStatement("select * from todo");
       ResultSet rs = st.executeQuery();
   
       while(rs.next()) {
@@ -40,21 +36,20 @@ public class TodoTable extends TableImpl {
         todo.setDeadline(rs.getString("deadline"));
         todos.add(todo);
       }
-      st.close();
-      con.close();
+
       return todos;
     } catch(Exception e) {
       e.printStackTrace();
-      return null;
+      throw e;
     }
   }
 
-  public Bean selectById(int id) {
-    try {
-      Connection con = getConnection();
+  public Bean selectById(int id) throws Exception {
+    try(Connection con = getConnection();
+      PreparedStatement st = con.prepareStatement("select * from todo where todo_id = ?");) {
+      
       Todo todo = new Todo();
-
-      PreparedStatement st = con.prepareStatement("select * from todo where todo_id = ?");
+      
       st.setInt(1, id);
       ResultSet rs = st.executeQuery();
 
@@ -64,20 +59,17 @@ public class TodoTable extends TableImpl {
         todo.setContent(rs.getString("content"));
         todo.setDeadline(rs.getString("deadline"));
       }
-      st.close();
-      con.close();
       return todo;
     } catch(Exception e) {
       e.printStackTrace();
-      return null;
+      throw e;
     }
   }
 
-  public void update(Bean bean, int id) {
-    try {
-      Connection con = getConnection();
-      PreparedStatement st = con.prepareStatement("update todo set title = ?, content = ?, deadline = ? where todo_id = ?");
-
+  public void update(Bean bean, int id) throws Exception {
+    try(Connection con = getConnection();
+      PreparedStatement st = con.prepareStatement("update todo set title = ?, content = ?, deadline = ? where todo_id = ?");) {
+    
       ArrayList<String> data = bean.getData();
       for(int i = 0; i < data.size();  i++) {
         st.setString(i + 1, data.get(i));
@@ -86,26 +78,22 @@ public class TodoTable extends TableImpl {
 
       int line = st.executeUpdate();
 
-      st.close();
-      con.close();
-
     } catch(Exception e) {
       e.printStackTrace();
+      throw e;
     }
   }
 
-  public void delete(int id) {
-    try {
-      Connection con = getConnection();
-      PreparedStatement st = con.prepareStatement("delete from todo where todo_id = ?");
+  public void delete(int id) throws Exception {
+    try(Connection con = getConnection();
+      PreparedStatement st = con.prepareStatement("delete from todo where todo_id = ?");) {
 
       st.setInt(1, id);
       int line = st.executeUpdate();
 
-      st.close();
-      con.close();
     } catch (Exception e) {
       e.printStackTrace();
+      throw e;
     }
   }
 }
