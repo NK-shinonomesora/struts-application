@@ -4,13 +4,16 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts.register.model.*;
 import org.apache.struts.register.db.*;
 import org.apache.struts.register.service.Service;
+import org.apache.struts.register.validation.StringValidation;
 import java.util.ArrayList;
+import java.util.function.BiPredicate;
 
 public class TodoAction extends ActionSupport {
   private static final long serialVersionUID = 1L;
   private int id;
   private Todo todoBean;
   private ArrayList<Todo> todos = new ArrayList<>();
+  private static final Service service = new Service();
 
   public int getId() {
     return id;
@@ -39,46 +42,59 @@ public class TodoAction extends ActionSupport {
   }
 
   public String insert() throws Exception {
-    Service service = new Service();
-    service.insert(new TodoTable(), todoBean);
+    try {
+      service.insert(new TodoTable(), todoBean);
+      return SUCCESS;
+    } catch(Exception e) {
+      return ERROR;
+    }
 
-    return SUCCESS;
   }
 
   public String select() throws Exception {
-    Service service = new Service();
-    setTodos(service.select(new TodoTable()));
-
-    return SUCCESS;
+    try {
+      setTodos(service.select(new TodoTable()));
+      return SUCCESS;
+    } catch(Exception e) {
+      return ERROR;
+    }
   }
 
   public String selectById() throws Exception {
-    Service service = new Service();
-    Bean todo = service.selectById(new TodoTable(), id);
-    setTodoBean((Todo)todo);
+    try {
+      Bean todo = service.selectById(new TodoTable(), id);
+      setTodoBean((Todo)todo);
+      return SUCCESS;
+    } catch(Exception e) {
+      return ERROR;
+    }
 
-    return SUCCESS;
   }
 
   public String update() throws Exception {
-    Service service = new Service();
-    service.update(new TodoTable(), todoBean, todoBean.getId());
-
-    return SUCCESS;
+    try {
+      service.update(new TodoTable(), todoBean, todoBean.getId());
+      return SUCCESS;
+    } catch(Exception e) {
+      return ERROR;
+    }
   }
 
   public String delete() throws Exception {
-    Service service = new Service();
-    service.delete(new TodoTable(), id);
-
-    return SUCCESS;
+    try {
+      service.delete(new TodoTable(), id);
+      return SUCCESS;
+    } catch(Exception e) {
+      return ERROR;
+    }
   }
 
   public void validate() {
     if(todoBean != null) {
-      if(todoBean.getTitle().length() == 0) addFieldError("todoBean.title", "Title is required.");
-      if(todoBean.getContent().length() == 0) addFieldError("todoBean.content", "Content is required.");
-      if(todoBean.getDeadline().length() == 0) addFieldError("todoBean.deadline", "Deadline is required.");
+      BiPredicate<String, Integer> bp = StringValidation.shorterThanSize();
+      if(bp.test(todoBean.getTitle(), 0)) addFieldError("todoBean.title", "Title is required.");
+      if(bp.test(todoBean.getContent(), 0)) addFieldError("todoBean.content", "Content is required.");
+      if(bp.test(todoBean.getDeadline(), 0)) addFieldError("todoBean.deadline", "Deadline is required.");
     }
   }
 }

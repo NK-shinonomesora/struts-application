@@ -13,19 +13,24 @@
         <action name="register" class="org.apache.struts.register.action.TodoAction" method="insert">
           <result name="success">/thankyou.jsp</result>
           <result name="input">/register.jsp</result>
+          <result name="error">/error.jsp</result>
         </action>
         <action name="select" class="org.apache.struts.register.action.TodoAction" method="select">
           <result name="success">/todos.jsp</result>
+          <result name="error">/error.jsp</result>
         </action>
         <action name="selectById" class="org.apache.struts.register.action.TodoAction" method="selectById">
           <result name="success">/todo.jsp</result>
+          <result name="error">/error.jsp</result>
         </action>
         <action name="update" class="org.apache.struts.register.action.TodoAction" method="update">
           <result name="success">/thankyou.jsp</result>
           <result name="input">/todo.jsp</result>
+          <result name="error">/error.jsp</result>
         </action>
         <action name="delete" class="org.apache.struts.register.action.TodoAction" method="delete">
           <result name="success">/thankyou2.jsp</result>
+          <result name="error">/error.jsp</result>
         </action>
     </package>
 
