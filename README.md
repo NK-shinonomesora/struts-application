@@ -24,7 +24,7 @@ If the build is successful, target/my-webapp.war is created.
 ### Deploying this app to Tomcat
 Running the command below.
 ```cli
-cp target/my-webapp.war ../ ../../tomcat/webapps/
+cp target/my-webapp.war ../../tomcat/webapps/
 ```
 
 ### Running this app
