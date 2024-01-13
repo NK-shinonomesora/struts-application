@@ -34,4 +34,4 @@ cd ../../tomcat
 docker-compose up -d
 ```
 Then Tomcat and MySQL invoke.
-Open browser and access to localhost:8888/my-webapp/index.action.
+Open browser and access to http://localhost:8888/my-webapp/index.action.
